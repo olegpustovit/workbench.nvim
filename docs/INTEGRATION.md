@@ -4,11 +4,11 @@
 
 | Repository | Owner | Runtime relationship |
 |---|---|---|
-| `OlegHQ/workbench.nvim`, dev | Workbench model, views/providers/actions and this specification | Standalone native plugin |
-| `OlegHQ/autoconf.nvim`, dev | TOML, language configuration, editor feature lifecycle | Optional public workbench adapter |
-| `OlegHQ/themekit.nvim`, dev | Theme resolution and semantic highlight mappings | Optional theme integration |
-| `OlegHQ/nvim-config`, dev | User defaults, mappings, submodule gitlinks and Nix module | Host composition |
-| `OlegHQ/nixos-config`, dev | Third-party packages/binaries and host activation | Separate checkout; may be absent in a workspace |
+| `olegpustovit/workbench.nvim`, dev | Workbench model, views/providers/actions and this specification | Standalone native plugin |
+| `olegpustovit/autoconf.nvim`, dev | TOML, language configuration, editor feature lifecycle | Optional public workbench adapter |
+| `olegpustovit/themekit.nvim`, dev | Theme resolution and semantic highlight mappings | Optional theme integration |
+| `olegpustovit/nvim-config`, dev | User defaults, mappings, submodule gitlinks and Nix module | Host composition |
+| `olegpustovit/nixos-config`, dev | Third-party packages/binaries and host activation | Separate checkout; may be absent in a workspace |
 
 Locate repositories from actual Git state. The Nix checkout's documented path is `nixos-config/`; if absent, inspect known workspace configuration or ask for its location only when activation is the remaining dependent task. Do not create a fake checkout or claim `make switch` passed. Complete independent plugin tests first.
 
@@ -16,7 +16,7 @@ Locate repositories from actual Git state. The Nix checkout's documented path is
 
 The Workbench runtime is published on `dev`. The parent submodule gitlink and optional flake input must resolve to the same published revision before a host release is considered synchronized. Run the plan validator and its negative tests locally. Do not add GitHub Actions or other hosted CI; runtime integration acceptance uses local Neovim end-to-end tests.
 
-Use `git@github.com:OlegHQ/workbench.nvim.git` in `.gitmodules`, `branch = dev`, and Git mode 160000 for the path. The parent's broad `pack` ignore rule means adding the submodule may require `git submodule add -f`; do not remove that ignore rule or stage raw plugin files. Gitlinks record exact commits; branch tracking is only an update policy. [Git submodules](https://git-scm.com/docs/git-submodule).
+Use `git@github.com:olegpustovit/workbench.nvim.git` in `.gitmodules`, `branch = dev`, and Git mode 160000 for the path. The parent's broad `pack` ignore rule means adding the submodule may require `git submodule add -f`; do not remove that ignore rule or stage raw plugin files. Gitlinks record exact commits; branch tracking is only an update policy. [Git submodules](https://git-scm.com/docs/git-submodule).
 
 ## Autoconf Repairs Before Integration
 

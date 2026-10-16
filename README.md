@@ -4,7 +4,7 @@ A keyboard-first workspace workbench for Neovim: persistent exploration, resumab
 
 **Status: local runtime implementation under integration validation; not yet published or enabled by default.** The public `:Workbench` command reports status by default. Run `:Workbench enable` explicitly to open Files or Search; `:Workbench disable` disposes Workbench-owned views and providers. The default setting remains disabled.
 
-Repository: `OlegHQ/workbench.nvim`, development branch `dev`.
+Repository: `olegpustovit/workbench.nvim`, development branch `dev`.
 
 ## Start Here
 

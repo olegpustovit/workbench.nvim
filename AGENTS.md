@@ -33,7 +33,7 @@ Do not spawn agents merely because this document mentions ownership. Delegation 
 
 ## Repository And Release
 
-Use remote `git@github.com:OlegHQ/workbench.nvim.git` and branch `dev`. Commit plugin changes from this repository. Never stage sibling plugin contents here. In the parent, stage the submodule gitlink, not plugin files. Publish the plugin commit before pointing a parent gitlink or Nix lock at it.
+Use remote `git@github.com:olegpustovit/workbench.nvim.git` and branch `dev`. Commit plugin changes from this repository. Never stage sibling plugin contents here. In the parent, stage the submodule gitlink, not plugin files. Publish the plugin commit before pointing a parent gitlink or Nix lock at it.
 
 The initial planning revision is not a runtime release. Follow [docs/INTEGRATION.md](docs/INTEGRATION.md) before adding runtime TOML wiring or Nix input/install wiring. Do not run the parent's broad `make sync` as a shortcut. It stages unrelated changes and assumes a Nix checkout exists.
 

@@ -68,7 +68,7 @@ Status: accepted. Host startup must satisfy its existing 150 ms target on the re
 
 ## ADR-011: Planning-Only Repository First
 
-Status: accepted. Publish this specification under OlegHQ/workbench.nvim on dev and register the native submodule in nvim-config. Do not add a runtime entrypoint or Nix installation input before a releasable capability exists. Reason: planning delivery should not change the editor. Runtime Nix wiring, exact pin verification and default capability rollout follow the integration runbook when a release is requested. WB-25 and WB-26 were removed from the core implementation scope by user request on 2026-09-13; existing per-feature gates remain required.
+Status: accepted. Publish this specification under olegpustovit/workbench.nvim on dev and register the native submodule in nvim-config. Do not add a runtime entrypoint or Nix installation input before a releasable capability exists. Reason: planning delivery should not change the editor. Runtime Nix wiring, exact pin verification and default capability rollout follow the integration runbook when a release is requested. WB-25 and WB-26 were removed from the core implementation scope by user request on 2026-09-13; existing per-feature gates remain required.
 
 ## ADR-012: Broad Workbench Scope, Staged Extensions
 
