@@ -1,31 +1,60 @@
 # workbench.nvim
 
-A keyboard-first workspace workbench for Neovim: persistent exploration, resumable search, code discovery, and dependable feature controls.
+A Neovim workspace plugin with file browsing, search, outlines and diagnostics
+views. Enable it explicitly when you want to use it, then disable it to release
+its views and resources.
 
-**Status: local runtime implementation under integration validation; not yet published or enabled by default.** The public `:Workbench` command reports status by default. Run `:Workbench enable` explicitly to open Files or Search; `:Workbench disable` disposes Workbench-owned views and providers. The default setting remains disabled.
+![Workbench's Files view browsing a repository in Neovim](docs/demo/files.png)
 
-Repository: `olegpustovit/workbench.nvim`, development branch `dev`.
+The screenshot shows the current source running in an isolated Neovim session.
+It demonstrates the Files view, not a completed host rollout or every provider.
+See [the capture notes](docs/demo/README.md).
 
-## Start Here
+## Try the development plugin
 
-- [Implementation plan](docs/PLAN.md): delivery sequence and task specifications.
-- [Architecture](docs/ARCHITECTURE.md): unified model, composition, ownership, and lifecycle.
-- [Research](docs/RESEARCH.md): evidence, alternatives, and decisions.
-- [UX contracts](docs/UX.md): precise user-visible behavior.
-- [Agent instructions](AGENTS.md) and [implementation skill](.agents/skills/workbench-implementation/SKILL.md).
-- [Validation](docs/VALIDATION.md): ownership, completion, correctness, performance, and release gates.
-
-Run the planning checks with Python 3.11+:
+The development branch is `dev`. With Neovim's native package layout:
 
 ```sh
-python3 scripts/check_plan.py
-python3 scripts/check_plan.py --next
-python3 -m unittest discover -s tests -p 'test_*.py'
+git clone --branch dev https://github.com/olegpustovit/workbench.nvim.git \
+  ~/.local/share/nvim/site/pack/workbench/start/workbench.nvim
 ```
 
-These commands validate planning structure only. They do not prove runtime behavior or host installation.
+Restart Neovim, then run:
 
-Set up the ignored, development-only dependencies and run the local harness with:
+```vim
+:Workbench enable
+:Workbench files
+```
+
+This is development software under integration validation. The capture used
+Neovim 0.12.4. The repository also contains a harness for Neovim 0.11.7.
+The default state is disabled; installation alone does not enable the views.
+
+## Commands
+
+| Command | Result |
+| --- | --- |
+| `:Workbench` | Show status |
+| `:Workbench enable` | Enable the plugin |
+| `:Workbench files` | Open the Files view |
+| `:Workbench search` | Open Search |
+| `:Workbench outline` | Open Outline |
+| `:Workbench problems` | Open Problems |
+| `:Workbench close` | Close a view |
+| `:Workbench disable` | Disable the plugin and dispose its owned resources |
+
+Provider availability depends on the environment. See
+[provider requirements](docs/PROVIDERS.md) and
+[interaction contracts](docs/UX.md). The plugin can run independently of
+`autoconf.nvim` and `themekit.nvim`; those integrations add settings and theme
+mappings. Nix installation and integration into an existing configuration are
+separate from cloning this repository.
+
+## Development
+
+[Architecture](docs/ARCHITECTURE.md), [contracts](docs/CONTRACTS.md),
+[implementation plan](docs/PLAN.md) and [validation](docs/VALIDATION.md) hold the
+engineering detail. Agent work follows [AGENTS.md](AGENTS.md).
 
 ```sh
 make bootstrap
@@ -33,21 +62,12 @@ make test
 make test-integration
 make test-ui
 make test-e2e
-make bench
-make check-ownership
 ```
 
-The harness checks Neovim 0.11.7 and the host binary. Runtime and E2E suites exercise the local implementation; they do not prove a published Nix installation. Benchmark fixtures and logs stay under ignored `.bench-output/` and `.test-output/` directories.
+The harness uses local Neovim instances and development-only dependencies.
+Planning checks validate the plan, not runtime behavior. The screenshot does not
+replace release, compatibility or performance checks. No GitHub CI is configured.
 
-All validation is local; there is no GitHub CI. WB-01 establishes the local Neovim harness, including `make test-e2e` for real RPC UI input, rendered grids, focus and cleanup. Feature tasks must add provider and user-journey scenarios; the initial probe does not establish feature acceptance.
+## License
 
-Suggested implementation request:
-
-```text
-Use $workbench-implementation. Read AGENTS.md and docs/PLAN.md, run the planning
-validator, and implement the next dependency-ready task. Honor its repository
-ownership and gates. Record reproducible evidence and update task status only
-after all applicable gates pass. Continue through the requested milestone.
-```
-
-The plugin works independently of `autoconf.nvim` and `themekit.nvim`; those integrations add TOML settings and semantic theme mappings. In the nvim-config workspace it is a native Git submodule. Runtime publication, Nix installation wiring, exact revision parity, and host rollout remain gated integration work.
+[MIT](LICENSE).
